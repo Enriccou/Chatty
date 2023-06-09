@@ -12,44 +12,138 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <form id="chatty">
-            <input autocomplete="" type="text" name="username" placeholder="Digite seu Usuário">
-            <div class="messages"></div>
-            <input autocomplete="" type="text" name="message" placeholder="Digite sua mensagem">
-            <button type="submit"> Enviar </button>
-        </form>
-        
-        <script type="text/javascript">
+        <div id="root"></div>
+        <div class="container">
+            <div class="active-users">
+                <img src="./assets/img/chatty-logo.png" alt="logo">
+            </div>
+         <form id="chatty">  
+                <input autocomplete="" type="text" name="username" id="user" placeholder="Digite seu Usuário">
 
-            var socket = io('http://localhost:3000');
-
-            function renderMessage(message){
-                $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
-            }
-
-            socket.on('receivedMessage', function(message) {
-                renderMessage(message);
-            });
-
-            $('#chatty').submit(function(event) {
-                event.preventDefault();
-
-                var author = $('input[name=username]').val();
-                var message = $('input[name=message]').val();
-
-                if (author.length && message.length){
-                    var messageObject = {
-                        author : author,
-                        message : message,
-                    };
-
-                    renderMessage(messageObject);
-
-                    socket.emit('sendMessage', messageObject);
-                }
-            })
-
-        </script>
-
+                <div class="container-profile">
+                    <img id='userImage'src='./assets/img-profile/john.webp' alt='profile-image' width="48" height="48">
+                    <input type="file" name="image-pic" id="file">
+                    <label for="file" id="uploadBtn">Escolha uma foto</label>
+                </div>
+               
+                <div class="messages">
+                    
+                </div>
+                <div class="container-send">
+                    <textarea autocomplete=""  name="message" id="writeMessage" placeholder="Escreva sua mensagem ..." >   
+                    </textarea>
+                    <span class="emojis">
+                        <p>&#x1F604;</p>
+                    </span>
+                    <button class="submit" type="submit"> Enviar </button>
+                </div>
+                <div class="emoji-center">
+                    <p>&#x1F60F;</p> <!-- 😏 -->
+                    <p>&#x1F610;</p> <!-- 😐 -->
+                    <p>&#x1F611;</p> <!-- 😑 -->
+                    <p>&#x1F612;</p> <!-- 😒 -->
+                    <p>&#x1F613;</p> <!-- 😓 -->
+                    <p>&#x1F614;</p> <!-- 😔 -->
+                    <p>&#x1F615;</p> <!-- 😕 -->
+                    <p>&#x1F616;</p> <!-- 😖 -->
+                    <p>&#x1F617;</p> <!-- 😗 -->
+                    <p>&#x1F618;</p> <!-- 😘 -->
+                    <p>&#x1F619;</p> <!-- 😙 -->
+                    <p>&#x1F61A;</p> <!-- 😚 -->
+                    <p>&#x1F61B;</p> <!-- 😛 -->
+                    <p>&#x1F61C;</p> <!-- 😜 -->
+                    <p>&#x1F61D;</p> <!-- 😝 -->
+                    <p>&#x1F61E;</p> <!-- 😞 -->
+                    <p>&#x1F61F;</p> <!-- 😟 -->
+                    <p>&#x1F620;</p> <!-- 😠 -->
+                    <p>&#x1F621;</p> <!-- 😡 -->
+                    <p>&#x1F622;</p> <!-- 😢 -->
+                    <p>&#x1F623;</p> <!-- 😣 -->
+                    <p>&#x1F624;</p> <!-- 😤 -->
+                    <p>&#x1F625;</p> <!-- 😥 -->
+                    <p>&#x1F626;</p> <!-- 😦 -->
+                    <p>&#x1F627;</p> <!-- 😧 -->
+                    <p>&#x1F628;</p> <!-- 😨 -->
+                    <p>&#x1F629;</p> <!-- 😩 -->
+                    <p>&#x1F62A;</p> <!-- 😪 -->
+                    <p>&#x1F62B;</p> <!-- 😫 -->
+                    <p>&#x1F62C;</p> <!-- 😬 -->
+                    <p>&#x1F62D;</p> <!-- 😭 -->
+                    <p>&#x1F62E;</p> <!-- 😮 -->
+                    <p>&#x1F62F;</p> <!-- 😯 -->
+                    <p>&#x1F630;</p> <!-- 😰 -->
+                    <p>&#x1F631;</p> <!-- 😱 -->
+                    <p>&#x1F632;</p> <!-- 😲 -->
+                    <p>&#x1F633;</p> <!-- 😳 -->
+                    <p>&#x1F634;</p> <!-- 😴 -->
+                    <p>&#x1F635;</p> <!-- 😵 -->
+                    <p>&#x1F636;</p> <!-- 😶 -->
+                    <p>&#x1F637;</p> <!-- 😷 -->
+                    <p>&#x1F638;</p> <!-- 😸 -->
+                    <p>&#x1F639;</p> <!-- 😹 -->
+                    <p>&#x1F63A;</p> <!-- 😺 -->
+                    <p>&#x1F63B;</p> <!-- 😻 -->
+                    <p>&#x1F63C;</p> <!-- 😼 -->
+                    <p>&#x1F63D;</p> <!-- 😽 -->
+                    <p>&#x1F63E;</p> <!-- 😾 -->
+                    <p>&#x1F63F;</p> <!-- 😿 -->
+                    <p>&#x1F640;</p> <!-- 🙀 -->
+                    <p>&#x1F641;</p> <!-- 🙁 -->
+                    <p>&#x1F642;</p> <!-- 🙂 -->
+                    <p>&#x1F643;</p> <!-- 🙃 -->
+                    <p>&#x1F644;</p> <!-- 🙄 -->
+                    <p>&#x1F645;</p> <!-- 🙅 -->
+                    <p>&#x1F646;</p> <!-- 🙆 -->
+                    <p>&#x1F647;</p> <!-- 🙇 -->
+                    <p>&#x1F648;</p> <!-- 🙈 -->
+                    <p>&#x1F649;</p> <!-- 🙉 -->
+                    <p>&#x1F64A;</p> <!-- 🙊 -->
+                    <p>&#x1F64B;</p> <!-- 🙋 -->
+                    <p>&#x1F64C;</p> <!-- 🙌 -->
+                    <p>&#x1F64D;</p> <!-- 🙍 -->
+                    <p>&#x1F64E;</p> <!-- 🙎 -->
+                    <p>&#x1F64F;</p> <!-- 🙏 -->
+                    <p>&#x1F910;</p> <!-- 🤐 -->
+                    <p>&#x1F911;</p> <!-- 🤑 -->
+                    <p>&#x1F912;</p> <!-- 🤒 -->
+                    <p>&#x1F913;</p> <!-- 🤓 -->
+                    <p>&#x1F914;</p> <!-- 🤔 -->
+                    <p>&#x1F915;</p> <!-- 🤕 -->
+                    <p>&#x1F916;</p> <!-- 🤖 -->
+                    <p>&#x1F917;</p> <!-- 🤗 -->
+                    <p>&#x1F918;</p> <!-- 🤘 -->
+                    <p>&#x1F919;</p> <!-- 🤙 -->
+                    <p>&#x1F91A;</p> <!-- 🤚 -->
+                    <p>&#x1F91B;</p> <!-- 🤛 -->
+                    <p>&#x1F91C;</p> <!-- 🤜 -->
+                    <p>&#x1F91D;</p> <!-- 🤝 -->
+                    <p>&#x1F91E;</p> <!-- 🤞 -->
+                    <p>&#x1F91F;</p> <!-- 🤟 -->
+                    <p>&#x1F920;</p> <!-- 🤠 -->
+                    <p>&#x1F921;</p> <!-- 🤡 -->
+                    <p>&#x1F922;</p> <!-- 🤢 -->
+                    <p>&#x1F923;</p> <!-- 🤣 -->
+                    <p>&#x1F924;</p> <!-- 🤤 -->
+                    <p>&#x1F925;</p> <!-- 🤥 -->
+                    <p>&#x1F926;</p> <!-- 🤦 -->
+                    <p>&#x1F927;</p> <!-- 🤧 -->
+                    <p>&#x1F928;</p> <!-- 🤨 -->
+                    <p>&#x1F929;</p> <!-- 🤩 -->
+                    <p>&#x1F92A;</p> <!-- 🤪 -->
+                    <p>&#x1F92B;</p> <!-- 🤫 -->
+                    <p>&#x1F92C;</p> <!-- 🤬 -->
+                    <p>&#x1F92D;</p> <!-- 🤭 -->
+                    <p>&#x1F92E;</p> <!-- 🤮 -->
+                    <p>&#x1F92F;</p> <!-- 🤯 -->
+                    <p>&#x1F930;</p> <!-- 🤰 -->
+                    <p>&#x1F931;</p> <!-- 🤱 -->
+                    <p>&#x1F932;</p> <!-- 🤲 -->
+                    <p>&#x1F933;</p> <!-- 🤳 -->
+                    <p>&#x1F934;</p> <!-- 🤴 -->
+                    <p>&#x1F935;</p> <!-- 🤵 -->
+                </div>
+            </form>
+        </div>
+        <script type="text/javascript" src="./js/index.js"></script>
     </body>
 </html>
