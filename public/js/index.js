@@ -105,6 +105,10 @@ fileImage.addEventListener('change', function () {
 });
 
 document.querySelector('#enterChat').addEventListener('click', () => {
+  if(document.querySelector('#username').value == ''){
+    document.querySelector('.error').style.display = 'flex';
+}else{
   document.querySelector('.principal').style.display = 'none';
   document.querySelector('.container').style.display = 'flex';
-})
+  document.querySelector(".error").style.display = "none";
+}})
