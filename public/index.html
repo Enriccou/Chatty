@@ -18,6 +18,7 @@
             </div>
             <div class="input">
                 <input type="text" id="username" placeholder="Preencha com seu Nome !" name="username">
+                <span class="error">Digite um nome de usuário</span>
                 <button id="enterChat" onclick="EmitJoin()"> Entrar no Chatty </button>
             </div>
             </aside>
@@ -27,7 +28,10 @@
         </main>
         <div class="container">
                 <div class="active-users">
-                    <img src="./assets/img/chatty-logo.png" alt="logo" />
+                   <span class="logo"><img src="./assets/img/chatty-logo.png" alt="logo" /></span>
+                    <h2>Online</h2>
+                    <ul class="users">
+                    </ul>
                 </div>
                 <form id="chatty">
 
