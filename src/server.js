@@ -1,23 +1,41 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const socket = require('socket.io');
+const http = require('http');
 
+const PORT = process.env.PORT || 3000;
 const app = express();
-const server = require("http").createServer(app);
-const io = require("socket.io")(server);
-
-app.use(express.static(path.join(__dirname, "../public")));
-app.set("views", path.join(__dirname, "../public"));
-app.engine("html", require("ejs").renderFile);
-app.set("view engine", "html");
-
-app.use("/", (req, res) => {
-  res.render("index.html");
+const httpServer = http.createServer(app);
+const io = socket(httpServer, {
+  path: '/socket.io'
 });
 
-let messages = [];
+app.use(express.static(__dirname + '/../public'));
 
-io.on("connection", (socket) => {
-  console.log(`Socket conectado: ${socket.id}`);
+const UsersOnline = [];
+
+io.on('connection', (socket) => {
+
+  socket.on('join', (username) => {
+    socket.data = {
+      id: socket.id,
+      username,
+    }
+
+    UsersOnline.push(socket.data.username);
+
+    console.log(`User ${socket.data.username} joined the chat using socket ${socket.data.id}`);
+
+    io.emit('UsersOnline', UsersOnline);
+  })
+
+  socket.on('disconnect', () => {
+    UsersOnline.splice(UsersOnline.indexOf(socket.data.username), 1);
+    console.log(`User ${socket.data.username} disconnected`);
+
+    io.emit('ExitUser', (UsersOnline));
+  })
+
+  let messages = [];
 
   socket.on("sendMessage", (data) => {
     messages.push(data);
@@ -25,4 +43,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3000);
+httpServer.listen(PORT, () => {
+  console.log(`Server online at http://localhost:${PORT}`);
+})

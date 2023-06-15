@@ -1,15 +1,15 @@
-var socket = io('http://localhost:3000');
 let textarea = document.querySelector("#writeMessage");
 let detach = document.querySelector(".emojis");
 let centerEmoji = document.querySelector(".emoji-center");
 const containerProfile = document.querySelector('.container-profile');
 const img = document.querySelector('#userImage');
 const fileImage = document.querySelector('#file');
-const labelImage = document.querySelector("#uploadBtn")
+const labelImage = document.querySelector("#uploadBtn");
 
-function colorName(){
+
+function colorName() {
   let color = Math.floor(Math.random() * 10000000).toString(16);
-  return "#"+ color
+  return "#" + color
 }
 
 const color = colorName()
@@ -32,51 +32,18 @@ function time() {
 
 function renderMessage(message) {
   $(".messages").append(
-    `<div class='message'>`+`<img src=${(message.photo)}>`+"<p class='p-message'><strong style=color:"+`${message.color}>`+message.author +
-      "</strong>: " +
-      message.message +
-      "</p>" +
-      "<p class='hour'>" +
-      time() +
-      "</p></div>"
+    `<div class='message'>` + `<img src=${(message.photo)}>` + "<p class='p-message'><strong style=color:" + `${message.color}>` + message.author +
+    "</strong>: " +
+    message.message +
+    "</p>" +
+    "<p class='hour'>" +
+    time() +
+    "</p></div>"
   );
 }
 
-socket.on("receivedMessage", function (message) {
-  renderMessage(message);
-});
-
-$("#chatty").submit(function (event) {
-  event.preventDefault();
-  if (textarea.value.length === 1) {
-    textarea.value = "";
-  } else {
-    var photo = img.getAttribute('src')
-    var author = $("input[name=username]").val();
-    if (author == "") {
-      author = "Sem Nome";
-    }
-
-    var message = $("textarea[name=message]").val();
-
-    if (author.length && message.length) {
-      var messageObject = {
-        author: author,
-        message: message,
-        photo: photo,
-        color:color
-      };
-      renderMessage(messageObject);
-      
-
-      socket.emit("sendMessage", messageObject);
-    }
-  }
-  textarea.value = "";
-  textarea.focus();
-
-});
-
+textarea.value = "";
+textarea.focus();
 
 //resetando o valor da mensagem após o enter
 textarea.addEventListener("keyup", (e) => {
@@ -125,11 +92,11 @@ centerEmoji.addEventListener("click", (e) => {
 });
 
 //escolher imagem para usuário
-fileImage.addEventListener('change', function(){
+fileImage.addEventListener('change', function () {
   const choosedFile = this.files[0];
-  if(choosedFile){
+  if (choosedFile) {
     const reader = new FileReader();
-    reader.addEventListener('load', function() {
+    reader.addEventListener('load', function () {
       img.setAttribute('src', reader.result);
     });
     reader.readAsDataURL(choosedFile);
@@ -137,3 +104,7 @@ fileImage.addEventListener('change', function(){
 
 });
 
+document.querySelector('#enterChat').addEventListener('click', () => {
+  document.querySelector('.principal').style.display = 'none';
+  document.querySelector('.container').style.display = 'flex';
+})

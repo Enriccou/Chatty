@@ -7,18 +7,18 @@
         <title>Chatty</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script></script>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="./styles/styles.css">
     </head>
     <body>
         <main class="principal">
             <aside class="enter-page">
             <div class="text">
                 <img src="./assets/img/chatty-logo.png" alt="">
-                <p>Seja bem-vindo ao <strong>Chatty</strong>, insira um nome para entrar na sala.</p>
+                <p>Seja bem-vindo ao <strong> Chatty </strong>, insira um nome para entrar na sala.</p>
             </div>
             <div class="input">
-                <input type="text" id="name" placeholder="João da Silva" name="username">
-                <button id="enterChat">Entrar na sala</button>
+                <input type="text" id="username" placeholder="Preencha com seu Nome !" name="username">
+                <button id="enterChat" onclick="EmitJoin()"> Entrar no Chatty </button>
             </div>
             </aside>
             <section class="handler-page">
@@ -131,7 +131,8 @@
                     </div>
                 </form>
             </div>
-        <script src="js/index.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/socket.js"></script>
             
     </body>
 </html>
