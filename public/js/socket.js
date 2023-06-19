@@ -1,4 +1,4 @@
-var socket = io('http://localhost:10000');
+var socket = io('https://web-chatty.onrender.com');
 
 function EmitJoin() {
     var username = document.getElementById("username").value;
