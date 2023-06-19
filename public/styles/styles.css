@@ -253,10 +253,10 @@ ul{
       height: 10%;
     }
     .container .active-users .logo{
-      object-fit: contain;
       width: 30%;
     }
      .container .active-users .logo img{
+       object-fit: contain;
       width: 100%;
      }
     #chatty{
