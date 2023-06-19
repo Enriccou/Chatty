@@ -7,14 +7,14 @@ function EmitJoin() {
 
 socket.on('UsersOnline', (UsersOnline) => {
 
-    var users = document.querySelector(".active-users");
+    var users = document.querySelector(".users");
     users.innerHTML = UsersOnline.map(user => `<li>${user}</li>`).join('');
 
 });
 
 socket.on('ExitUser', (UsersOnline) => {
 
-    var users = document.querySelector(".active-users");
+    var users = document.querySelector(".users");
     users.innerHTML = UsersOnline.map(user => `<li>${user}</li>`).join('');
     console.log(UsersOnline);
 
