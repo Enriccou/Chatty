@@ -1,4 +1,4 @@
-var socket = io('https://chatty-virid.vercel.app/');
+var socket = io('https://chatty-enriccou.vercel.app');
 
 function EmitJoin() {
     var username = document.getElementById("username").value;
