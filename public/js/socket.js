@@ -1,21 +1,9 @@
-var socket = io('http://localhost:3000');
+var socket = io('https://chatty-plum.vercel.app/');
 
 function EmitJoin() {
     var username = document.getElementById("username").value;
     socket.emit("join", username);
 }
-
-/* setInterval(() => {
-    socket.on('UsersOnline', (UsersOnline) => {
-
-        var users = document.querySelector(".active-users");
-        users.innerHTML = "";
-        UsersOnline.map(user => {
-            users.innerHTML += `<li>${user}</li>`;
-        });
-
-    });
-}, 3000); */
 
 socket.on('UsersOnline', (UsersOnline) => {
 
@@ -31,9 +19,6 @@ socket.on('ExitUser', (UsersOnline) => {
     console.log(UsersOnline);
 
 });
-
-
-
 
 socket.on("receivedMessage", function (message) {
     renderMessage(message);
