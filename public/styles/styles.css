@@ -246,12 +246,19 @@ ul{
     flex-direction: column;
     }
     .container .active-users{
+      flex-direction: row;
+      display: flex;
+      justify-content: space-evenly;
       width: 100vw;
       height: 10%;
     }
-    .container .active-users img{
-      width: 80px;
+    .container .active-users .logo{
+      object-fit: contain;
+      width: 30%;
     }
+     .container .active-users .logo img{
+      width: 100%;
+     }
     #chatty{
       max-width: 100vw;
     }
@@ -263,7 +270,16 @@ ul{
       width: 35%;
       font-size: 12px;
     }
-  }
+  .container .active-users .users-online{
+      display: none;
+    }
+    .online{
+      display: none;
+    }
+    .usersMobile{
+      display: flex;
+    }
+}
 
   .principal{
   display: flex;
